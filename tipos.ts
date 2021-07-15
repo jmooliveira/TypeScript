@@ -52,3 +52,50 @@ enum StatusAprovacao{
      propriedade1: 1,
      propriedade2: 2
  })
+
+//never
+function loopInfinito(): never{
+    while(true){ }
+}
+
+function erro(mensagem: string): never{
+    thrown new Error(mensagem);
+}
+
+function falha(){
+    return erro(('algo falhou');)
+}
+
+//union types
+const nota: string | number = 5;
+function exibirNota(nota: number | string | boolean){
+    console.log('A nota é ${nota}');
+}
+
+exibirNota('10');
+exibirNota(10);
+exibirNota(true);
+
+//alias
+type Funcionario = {
+    nome: string;
+    sobrenome: string;
+    dataNascimento: Date;
+}
+
+//type Funcionarios = Array<Funcionario>; // //Array<string>; //caso não utilize objeto
+const funcionarios: Funcionario[] = [{//['jefferson', 'ana', 'iris'] //assim necessita passar atributo
+    nome: 'Jefferson',
+    sobrenome: 'M.O.',
+    dataNascimento: new Date()
+},{
+    nome: 'Ana',
+    sobrenome: 'S.R.',
+    dataNascimento: new Date()
+},];
+function tratarFuncionarios(funcionarios: Funcionario[]){
+    //.....
+    for(let funcionario of funcionarios){
+        console.log('Nome do funcionario: ', funcionario.nome);
+    }
+}
