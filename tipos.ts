@@ -58,12 +58,12 @@ function loopInfinito(): never{
     while(true){ }
 }
 
-function erro(mensagem: string): never{
-    thrown new Error(mensagem);
+function erro(mensagem?: string): never{
+    throw new Error(mensagem);
 }
 
-function falha(){
-    return erro(('algo falhou');)
+function falha() {
+    return erro('algo falhou');
 }
 
 //union types
@@ -99,3 +99,29 @@ function tratarFuncionarios(funcionarios: Funcionario[]){
         console.log('Nome do funcionario: ', funcionario.nome);
     }
 }
+
+//tipo nulo
+let altura: number | null = 1.6;
+altura = null;
+type Contato = {
+    nome: string;
+    telefone1 : string;
+    telefone2?: string; //|null; caso queira ter a opçao de null //? após o campo indica que ele é opcional
+}
+
+const contato: Contato = {
+    nome:'Jeff',
+    telefone1:'12345',
+}
+
+//type asserction
+
+const minhaIdade: any = 34;
+(minhaIdade as number).toString();
+//(<number>minhaIdade).toString();
+
+
+const input = document.getElementById("numero1") as HTMLInputElement;
+//const input = <HTMLInputElement> document.getElementById("numero1");
+
+console.log(input.value);
